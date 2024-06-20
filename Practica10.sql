@@ -102,6 +102,9 @@ set @resultado = (CASE WHEN @valor = 10 THEN 'ROJO'
 
 print @resultado
 
+select * from Inventario
+select * from Compras
+
 select * ,(CASE WHEN disponibilidad = 1 THEN 'Verde'
 				WHEN disponibilidad = 0 THEN 'rojo'
 				ELSE 'negro' END) AS Indicador
