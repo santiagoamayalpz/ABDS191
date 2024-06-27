@@ -46,6 +46,38 @@ BEGIN
     WHERE HistorialID = @HistorialID
 END;
 
-EXEC sp_EliminarHistorialVisualizacion @historialId = 10
+EXEC sp_EliminarHistorialVisualizacion @HistorialID = 11
 
 SELECT * FROM HistorialVisualizacion
+
+--4
+
+CREATE PROCEDURE sp_ConsultarUsuariosSuscripcion
+@Tipo NVARCHAR(50)
+AS
+BEGIN
+    SELECT u.UsuarioID, u.Nombre, u.Email, s.Tipo
+    FROM Usuarios u
+    JOIN Suscripciones s ON u.UsuarioID = s.UsuarioID
+    WHERE s.Tipo = @Tipo
+END;
+
+EXEC sp_ConsultarUsuariosSuscripcion @Tipo = 'Anual'
+
+--5
+
+CREATE PROCEDURE sp_PeliculasReproducidas
+@Genero NVARCHAR(50)
+AS
+BEGIN
+    SELECT p.PeliculaID, p.Titulo, p.Genero, h.FechaVisualizacion
+    FROM Peliculas p
+    JOIN HistorialVisualizacion h ON p.PeliculaID = h.PeliculaID
+    WHERE p.Genero = @Genero
+    ORDER BY h.FechaVisualizacion DESC
+END;
+
+EXEC sp_PeliculasReproducidas @Genero = 'Terror'
+
+
+select * from Peliculas
