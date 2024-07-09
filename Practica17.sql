@@ -69,7 +69,7 @@ END;
 
 SELECT * FROM Comics
 
-EXEC ActualizarPrecioComic @IdComic = 3, @NuevoPrecio = 249.99;
+EXEC ActualizarPrecioComic @IdComic = 16, @NuevoPrecio = 900.00;
 
 
 
